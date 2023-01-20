@@ -1,0 +1,45 @@
+package com.example.OAuth.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.OAuth.member.Member;
+import com.example.OAuth.service.MemberService;
+
+@Controller
+public class MemberController {
+    private final MemberService memberService;
+
+    
+    public MemberController(MemberService memberService){
+        this.memberService = memberService;
+    }
+
+    @GetMapping("/members/new")
+    public String createForm(){
+        return "members/createMemberForm";
+    }
+
+    @PostMapping("/member/create")
+    public String create(MemberForm form){
+        Member member = new Member();
+        member.setName(form.getName());
+        member.setEmail_1(form.getEmail_1());
+        member.setEmail_2(form.getEmail_2());
+        memberService.join(member);
+        return "redirect:/";
+    }
+    
+    @GetMapping("/member")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+
+        return "members/memberList";
+    }
+}
