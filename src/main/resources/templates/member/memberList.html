@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                </tr>
+            </thead>
+            <tbody>
+                 <tr th:each = "member : ${members}"><!--java의 forEach문 처럼 member안에 members를 집어넣음 파이썬의 for문 같은 느낌? -->
+                    <td th:text = "${member.id}"></td>   
+                    <td th:text = "${member.name}"></td>   
+                    <td th:text = "${member.email_1}"></td>       
+                    <td>@</td>                   
+                    <td th:text = " ${member.email_2}"></td>                                        
+                </tr>
+
+            </tbody>
+        </table>        
+    </div>
+</body>
+</html>
