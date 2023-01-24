@@ -8,12 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    <p th:text = "'안녕하세요.' + ${data}"></p>
-    <p th:text = "${name}"></p>
+    <p th:text = "'안녕하세요.' + ${data}"></p>    
     <a href = "/members/new">회원가입</a>
     <a href = "/members">회원목록</a>
     <form method = "post" action = "/">
-        <input type = "text" name = "txt" placeholder="이름을 입력해주세요" value th:text = "${name2}">        
+        <input type = "text" name = "txt" placeholder="이름을 입력해주세요">        
         <input type = "submit" value = "click!!">
     </form>
 </body>
