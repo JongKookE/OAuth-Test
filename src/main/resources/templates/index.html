@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name = "description" content = ""/>
+    <base href="/"/>
+    
+    <title>OAuth Demo</title>
+
+</head>
+<body>
+    <h1>OAuth Demo</h1>
+    <div class = "container unauthenticated">With Github:<a href = "/oauth2/authorization/github">Click Here</a></div>
+    <div class = "container authenticated" style = "display:none"> Logged in as :<span id = "user"></span>
+        <div><button onClick = "logout()" class = "btn btn-primary"> Logout</button></div>
+    </div>
+
+</body>
+<script type="text/javascript">
+    $.get("/user", function(data) {
+        $("#user").html(data.name);
+        $(".unauthenticated").hide()
+        $(".authenticated").show()
+    });
+</script>
+<script type = "text/javascript">
+    var logout = function() {
+    $.post("/logout", function() {
+        $("#user").html('');
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+    })
+    return true;
+}
+</script>
+</html>
